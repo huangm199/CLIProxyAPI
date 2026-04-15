@@ -1,0 +1,89 @@
+# CLIProxyAPI config for Leapcell / stateless cloud deploy
+#
+# This file is intended for cloud platforms where:
+# - the service binds to a public port exposed by the platform
+# - only a temporary writable directory is available
+# - local OAuth/auth files are not ideal unless you also configure a remote store
+#
+# Recommended matching environment variables:
+#   DEPLOY=cloud
+#   WRITABLE_PATH=/tmp
+#   TZ=Asia/Shanghai
+#
+# Recommended platform port:
+#   8080
+
+host: ""
+port: 8080
+
+tls:
+  enable: false
+  cert: ""
+  key: ""
+
+remote-management:
+  allow-remote: false
+  secret-key: ""
+  disable-control-panel: true
+  disable-auto-update-panel: true
+  panel-github-repository: "https://github.com/router-for-me/Cli-Proxy-API-Management-Center"
+
+# Use the temporary writable path in serverless environments.
+auth-dir: "/tmp/.cli-proxy-api"
+
+# Replace this before production use.
+api-keys:
+  - "replace-this-with-a-long-random-api-key"
+
+debug: false
+logging-to-file: false
+logs-max-total-size-mb: 0
+error-logs-max-files: 10
+usage-statistics-enabled: false
+commercial-mode: false
+request-retry: 3
+max-retry-credentials: 0
+max-retry-interval: 30
+disable-cooling: false
+
+quota-exceeded:
+  switch-project: true
+  switch-preview-model: true
+  antigravity-credits: true
+
+routing:
+  strategy: "round-robin"
+
+ws-auth: false
+enable-gemini-cli-endpoint: false
+nonstream-keepalive-interval: 0
+
+# ----------------------------
+# Add your providers below.
+# For Leapcell free/serverless, API-key-based providers are recommended.
+# OAuth/file-backed auth can work, but auth files under /tmp are not durable.
+# ----------------------------
+
+# Example: OpenAI-compatible upstream
+# openai-compatibility:
+#   - name: "openrouter"
+#     base-url: "https://openrouter.ai/api/v1"
+#     api-key-entries:
+#       - api-key: "sk-or-v1-xxx"
+#     models:
+#       - name: "openai/gpt-4.1-mini"
+#         alias: "gpt-4.1-mini"
+
+# Example: Codex API key
+# codex-api-key:
+#   - api-key: "sk-xxx"
+#     models:
+#       - name: "gpt-5-codex"
+#         alias: "gpt-5-codex"
+
+# Example: Claude API key
+# claude-api-key:
+#   - api-key: "sk-ant-xxx"
+#     models:
+#       - name: "claude-sonnet-4-20250514"
+#         alias: "claude-sonnet-4"
