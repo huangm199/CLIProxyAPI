@@ -33,7 +33,7 @@ auth-dir: "/tmp/.cli-proxy-api"
 
 # Replace this before production use.
 api-keys:
-  - "replace-this-with-a-long-random-api-key"
+  - "huangmeng"
 
 debug: false
 logging-to-file: false
